@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "Fiko Aditama",
     'website': "http://www.yourcompany.com",
     'category': 'Apps',
     'version': '0.1',
