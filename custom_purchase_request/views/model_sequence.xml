@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+ 
+    <!-- purchase.order sequence -->
+    <record id="custom_purchase_order" model="ir.sequence">
+      <field name="name">Purchase Order</field>
+      <field name="code">custom.purchase.order</field>
+      <field name="prefix">PO/%(y)s/%(month)s/</field>
+      <field name="padding">5</field>
+      <field name="implementation">no_gap</field>
+    </record>
+
+    <!-- sale.order sequence -->
+    <record id="custom_sale_order" model="ir.sequence">
+      <field name="name">Sale Order</field>
+      <field name="code">custom.sale.order</field>
+      <field name="prefix">SO/%(y)s/%(month)s/</field>
+      <field name="padding">5</field>
+      <field name="implementation">no_gap</field>
+    </record>
+
+    <!-- account.move sequence -->
+    <record id="custom_account_move" model="ir.sequence">
+      <field name="name">Account Move</field>
+      <field name="code">custom.account.move</field>
+      <field name="prefix">INV/%(y)s/%(month)s/</field>
+      <field name="padding">5</field>
+      <field name="implementation">no_gap</field>
+    </record>
+
+
+    <!-- stock.picking do sequence -->
+    <record id="custom_stock_picking_do" model="ir.sequence">
+      <field name="name">Stock Picking DO</field>
+      <field name="code">custom.stock.picking.do</field>
+      <field name="prefix">DO/%(y)s/%(month)s/</field>
+      <field name="padding">5</field>
+      <field name="implementation">no_gap</field>
+    </record>
+
+    <!-- stock.picking gr sequence -->
+    <record id="custom_stock_picking_gr" model="ir.sequence">
+      <field name="name">Stock Picking GR</field>
+      <field name="code">custom.stock.picking.gr</field>
+      <field name="prefix">GR/%(y)s/%(month)s/</field>
+      <field name="padding">5</field>
+      <field name="implementation">no_gap</field>
+    </record>
+
+    <!-- purchase.request gr sequence -->
+    <record id="custom_purchase_request" model="ir.sequence">
+      <field name="name">Purchase Request</field>
+      <field name="code">custom.purchase.request</field>
+      <field name="prefix">IMP/PR/%(y)s/%(month)s/</field>
+      <field name="padding">5</field>
+      <field name="implementation">no_gap</field>
+    </record>
+
+  </data>
+</odoo>

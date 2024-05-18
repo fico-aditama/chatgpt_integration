@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Views -->
+        <record id="view_purchase_request_form" model="ir.ui.view">
+            <field name="name">purchase.request.form</field>
+            <field name="model">purchase.request</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Request">
+                    <header>
+                        <button name="action_create_po" string="Create PO" type="object" class="btn btn-primary" attrs="{'invisible': [('state', '=', 'closed')]}" />
+                        <button name="action_close_po" string="Close PO" type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,waiting,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="o_not_full oe_button_box">
+                            <button type="button" class="oe_stat_button" name="action_get_purchase_order_view">
+                                <i class="fa fa-dollar fa-2x"></i>
+                                <field name="count_total_purchase_order" widget="statinfo" options="{'reload_on_button': true}" />
+                            </button>
+                        </div>
+
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group name="left_group">
+                                <field name="request_by" widget="many2one_avatar_user"/>
+                                <field name="department_id" widget="selection"/>
+                                <field name="date" widget="date"/>
+                                <field name="order_category" widget="selection"/>
+                            </group>
+                            <group name="right_group">
+                                <field name="created_on" widget="datetime"/>
+                                <field name="is_asset" widget="boolean_toggle"/>
+                                <field name="company_id" widget="selection"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Purchase Order Lines">
+                                <field name="purchase_order_line_ids" widget="section_and_note_one2many">
+                                    <tree editable="bottom">
+                                        <control>
+                                            <create name="add_product_control" string="Add a product"/>
+                                            <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                            <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                        </control>
+                                        <field name="product_id"/>
+                                        <field name="price_total"/>
+                                        <field name="description"/>
+                                        <field name="product_qty"/>
+                                        <field name="product_uom"/>
+                                        <field name="stock"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purchase_request" model="ir.actions.act_window">
+            <field name="name">Purchase Requests</field>
+            <field name="res_model">purchase.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new purchase request.
+                </p>
+            </field>
+        </record>
+
+        <!-- Views -->
+        <record id="view_purchase_order_abs_form" model="ir.ui.view">
+            <field name="name">purchase.request.abs.form</field>
+            <field name="model">purchase.request.abs</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order" class="o_purchase_order">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="supplier" string="Supplier" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}" placeholder="Name, TIN, Email, or Reference"/>
+                            <!-- <field name="company_id" invisible="1"/> -->
+                        </group>
+                            <field name="purchase_order_line_ids" widget="section_and_note_one2many">
+                                <tree editable="bottom">
+                                    <control>
+                                        <create name="add_product_control" string="Add a product"/>
+                                        <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                        <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                    </control>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="stock" string="Qty Released"/>
+                                    <field name="product_uom"/>
+                                </tree>
+                            </field>
+                    </sheet>
+                    <footer>
+                        <button name="action_create_po" string="Create PO" type="object" class="btn btn-primary"  />
+                        <button name="action_cancel_purchase_request" string="Cancel" type="object" class="btn btn-danger" context="{'form_view_initial_mode': 'view'}" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Menus -->
+        <!-- <menuitem id="menu_purchase_request" name="Purchase Request"/> -->
+        <menuitem id="menu_purchase_request_form" parent="purchase.menu_procurement_management" name="Purchase Requests" action="action_purchase_request"/>
+
+    </data>
+</odoo>

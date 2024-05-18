@@ -1,0 +1,38 @@
+<odoo>
+  <data>
+    <record id="chatgpt_form_view" model="ir.ui.view">
+      <field name="name">chatgpt.message.form</field>
+      <field name="model">chatgpt.message</field>
+      <field name="arch" type="xml">
+        <form string="ChatGPT Integration">
+          <header>
+                <button name="action_send_message" string="Send Message" type="object" class="oe_highlight" />
+          </header>
+          <sheet>
+            <h1> <field name="name" /></h1>
+            <group>
+               
+                <field name="message" />
+                <field name="response" />
+            </group>
+          </sheet>
+        </form>
+
+
+      </field>
+    </record>
+
+    <!-- Membuat Action Receipt Report Tree / Form -->
+    <record id="action_chatgpt_integration" model="ir.actions.act_window">
+      <field name="name">Message</field>
+      <field name="res_model">chatgpt.message</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p name="o_view_nocontent_smiling_face">
+                  ChatGPT
+        </p>
+      </field>
+    </record>
+    <menuitem id="chatgpt_integration" name="ChatGPT" action="action_chatgpt_integration"/>
+  </data>
+</odoo>

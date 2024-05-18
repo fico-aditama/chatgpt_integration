@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_request,purchase.request,model_purchase_request,base.group_user,1,1,1,1
+access_purchase_request_line,purchase.request.line,model_purchase_request_line,base.group_user,1,1,1,1
+access_purchase_request_abs,purchase.request.abs,model_purchase_request_abs,base.group_user,1,1,1,1
+access_sale_order_report,sale.order.report,model_sale_order_report,base.group_user,1,1,1,1

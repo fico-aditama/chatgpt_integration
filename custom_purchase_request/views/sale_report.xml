@@ -1,0 +1,151 @@
+<odoo>
+    <data>
+
+        <!-- View definition for Sales Net Report -->
+        <record id="sale_order_report_form" model="ir.ui.view">
+            <field name="name">Sales Net Report View</field>
+            <field name="model">sale.order.report</field>
+            <field name="arch" type="xml">
+                <form string="Sales Net Report">
+                    <sheet>
+                        <group>
+                            <group name="left_report">
+                                <field name="sale_order_ids" widget="many2many_tags"/>
+                                <field name="date_from" widget="datetime"/>
+                                <field name="date_to" widget="datetime"/>
+                            </group>
+                            <group name="right_report">
+
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_analysis_report" string="PDF Report" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action definition for Sales Net Report -->
+        <record id="action_report_sales_net" model="ir.actions.act_window">
+            <field name="name">Sales Net Report Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.report</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sale_order_report_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_support" parent="sale.menu_sale_report" name="Sales Net Report" action="action_report_sales_net" sequence="1"/>
+
+        <template id="report_sales_net_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t class="page">
+                        <center>
+                            <b>
+                                <h3>Sale Order Net Report</h3>
+                            </b>
+                        </center>
+                        <t t-if="start_date and end_date">
+                            <center>
+                                <span t-esc="start_date"/>
+                            To
+                                <span t-esc="end_date"/>
+                            </center>
+                        </t>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>DO Number</th>
+                                    <th>SO Number</th>
+                                    <th>Customer Code</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Address</th>
+                                    <th>Delivery Date</th>
+                                    <th>Company</th>
+                                    <th>Product</th>
+                                    <th>Demand</th>
+                                    <th>Done</th>
+                                    <th>Return</th>
+                                    <th>Net</th>
+                                    <th>No. Invoice</th>
+                                    <th>Total Invoice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="sale_order" t-as="order">
+                                    <td>
+                                        <t t-esc="order['do_number'] or ''"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['so_number_id']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['customer_code'] or ''"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['customer_name']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['customer_address']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['delivery_date'] or ''"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['company_id']"/>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="order['order_lines']" t-as="order_line">
+                                            <t t-esc="order_line['product_id'] or ''"/>
+                                            <br/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="order['order_lines']" t-as="order_line">
+                                            <t t-esc="order_line['demand'] or ''"/>
+                                            <br/>
+
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="order['order_lines']" t-as="order_line">
+                                            <t t-esc="order_line['done'] or ''"/>
+                                            <br/>
+
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="order['order_lines']" t-as="order_line">
+                                            <t t-esc="order_line['done'] or ''"/>
+                                            <br/>
+
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <t t-foreach="order['order_lines']" t-as="order_line">
+                                            <t t-esc="order_line['net'] or ''"/>
+                                            <br/>
+
+                                        </t>
+                                    </td>
+
+                                    <td>
+                                        <t t-esc="order['invoice_number']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="order['total_invoice']"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report id="report_sale_order_net" string="Sales Net Report" model="sale.order.report" report_type="qweb-pdf" file="custom_module_sanqua.report_sales_net_template" name="custom_module_sanqua.report_sales_net_template" />
+
+    </data>
+</odoo>
