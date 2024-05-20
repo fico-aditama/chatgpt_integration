@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Custom Button",
+    'name': "Custom POS",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        * Showing WB Button and WB Button2 POS
+        * Pos Edit button in model post config "Visible Backspace Button"
+        * Visible (x) Numpad POS
+""",
 
     'description': """
         Long description of module's purpose
@@ -26,7 +28,9 @@
     'assets' : {
         'point_of_sale.assets':[
             "custom_pos/static/src/js/wb_button.js",
+            "custom_pos/static/src/js/wb_NumpadWidget.js",
             "custom_pos/static/src/xml/web_sample_button.xml",
+            "custom_pos/static/src/xml/NumpadWidget.xml",
         ]
     }
 }
