@@ -6,4 +6,10 @@
             WB Button
         </div>
     </t>
+    <t t-name="WBSampleButton2" owl="1">
+        <div class="control-button">
+            <i class="fa fa-superpowers" role="img" aria-label="OE Sample Button" title="OE Sample Button" />
+            WB Button2
+        </div>
+    </t>
 </template>
