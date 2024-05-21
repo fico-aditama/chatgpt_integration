@@ -1,21 +1,26 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+import json
+from datetime import datetime
+
+class CustomPos(http.Controller):
+
+    @http.route('/pos/rpc/example', auth="user", type="json")
+    def pos_example(self, **kwargs):
+        result = http.request.env['res.lang'].search_read()
+        return result 
 
 
-# class CustomPos(http.Controller):
-#     @http.route('/custom_pos/custom_pos', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+    @http.route('/pos/rpc/example1', auth="user", type="http", website=True)
+    def pos_example1(self, **kwargs):
+        # Convert result to JSON format
+        result = http.request.env['res.lang'].search_read()
 
-#     @http.route('/custom_pos/custom_pos/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('custom_pos.listing', {
-#             'root': '/custom_pos/custom_pos',
-#             'objects': http.request.env['custom_pos.custom_pos'].search([]),
-#         })
+        # Convert datetime objects to string representation
+        for item in result:
+            for key, value in item.items():
+                if isinstance(value, datetime):
+                    item[key] = value.strftime("%Y-%m-%d %H:%M:%S")
 
-#     @http.route('/custom_pos/custom_pos/objects/<model("custom_pos.custom_pos"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('custom_pos.object', {
-#             'object': obj
-#         })
+        # Return JSON response
+        return http.Response(json.dumps(result), content_type='application/json;charset=utf-8')

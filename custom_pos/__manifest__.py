@@ -8,6 +8,8 @@
         * Invisible (x) Numpad POS
         * Create Pop Up Odoo POS 
         * Translation id_ID.po
+        * RPC (Remote Procedure Call) Calls
+        * Clear POS Line POS Development
 """,
 
     'description': """
@@ -35,6 +37,9 @@
             "custom_pos/static/src/js/wb_NumpadWidget.js",
             "custom_pos/static/src/xml/web_sample_button.xml",
             "custom_pos/static/src/xml/NumpadWidget.xml",
+
+            "custom_pos/static/src/xml/clearall_button.xml",
+            "custom_pos/static/src/js/clearall_button.js",
         ]
     }
 }

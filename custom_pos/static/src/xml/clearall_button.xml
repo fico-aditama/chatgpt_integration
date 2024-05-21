@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template >
+    <t t-name="WBClearAlLButton" owl="1">
+        <div class="control-button">
+            <i class="fa fa-remove" role="img" aria-label="OE Sample Button" title="OE Sample Button" />
+            Clear All
+        </div>
+    </t>
+</template>

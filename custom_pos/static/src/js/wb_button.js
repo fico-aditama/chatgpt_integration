@@ -70,16 +70,57 @@ odoo.define('custom_po.WBSampleButton', function (require) {
       // });
 
       // agar bisa translate
-      this.showPopup('ErrorPopup', {
-        title: this.env._t('Error Message'),
-        body: this.env._t('The Simple Error Message Screen')
-      })
+      // this.showPopup('ErrorPopup', {
+      //   title: this.env._t('Error Message'),
+      //   body: this.env._t('The Simple Error Message Screen')
+      // })
 
       // hindari translate
       // this.showPopup("ErrorPopup", {
       //     title: "Error Message",
       //     body: "The Simple Error Message Screen",
       // });
+
+
+      // RPC (Remote Procedure Call) Calls
+      // var result = await this.rpc({
+      //   "model":"res.lang",
+      //   "method":"search_read",
+      //   "args":[[],["id","name","code"]],
+      // })
+
+      // var result = await this.rpc({
+      //   "route":"/pos/rpc/example",
+      //   "params":{},
+      // })
+
+      // // console.log(result);
+      // result.forEach(function(value){
+      //   console.log("Record-->", value)
+      // });
+
+      // VIdeo 12
+      var result = await this.rpc({
+        "route":"/pos/rpc/example",
+        "params":{},
+      })
+      
+      var multi_lang_list = [];
+
+      result.forEach(function(value){
+        multi_lang_list.push({"id":value.id,
+          "label": value.name,
+          "item": value
+        });
+      });
+      console.log(multi_lang_list);
+
+      var {confirmed, payload: selectedOption} = await this.showPopup("SelectionPopup", {
+        "title": "Active Language",
+        list: multi_lang_list,
+      })
+      console.log(confirmed, selectedOption)
+
     }
   }
 
