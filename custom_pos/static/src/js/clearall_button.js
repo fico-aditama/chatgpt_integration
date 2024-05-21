@@ -17,9 +17,11 @@ odoo.define('custom_po.WBClearAlLButton', function (require) {
       console.log('wb_clear_all_lines method called')
 
       //   method 1
-        var current_order = this.env.pos.get_order()
-        console.log(current_order)
-        current_order.orderlines.filter(line=> line.get_product()).forEach(single_line=>current_order.remove_orderline(single_line));
+      var current_order = this.env.pos.get_order()
+      console.log(current_order)
+      current_order.orderlines
+        .filter(line => line.get_product())
+        .forEach(single_line => current_order.remove_orderline(single_line))
 
       //   method 2
       //   // Ensure there is a current order before attempting to clear its lines

@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record id="action_owl_sales_dashboard" model="ir.actions.client">
+      <field name="name">Sales Dashboard</field>
+      <field name="tag">custom_dashboard.sales_dashboard</field>
+    </record>
+
+    <menuitem
+      id="sales_dashboard_menu"
+      name="Sales Dashboard"
+      sequence="10"
+      action="action_owl_sales_dashboard"
+      />
+  </data>
+</odoo>
