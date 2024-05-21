@@ -65,3 +65,17 @@ msgstr "Tombol WB"
 #, python-format
 msgid "WB Button2"
 msgstr "Tombol WB2"
+
+#. module: custom_pos
+#. odoo-javascript
+#: code:addons/custom_pos/static/src/js/wb_button.js:0
+#, python-format
+msgid "Error Message"
+msgstr "Pesan Kesalahan"
+
+#. module: custom_pos
+#. odoo-javascript
+#: code:addons/custom_pos/static/src/js/wb_button.js:0
+#, python-format
+msgid "The Simple Error Message Screen"
+msgstr "Layar Pesan Kesalahan Sederhana"

@@ -6,7 +6,8 @@
         * Showing WB Button and WB Button2 POS
         * Pos Edit button in model post config "Visible Backspace Button"
         * Invisible (x) Numpad POS
-        * Create Pop Up Odoo POS
+        * Create Pop Up Odoo POS 
+        * Translation id_ID.po
 """,
 
     'description': """
