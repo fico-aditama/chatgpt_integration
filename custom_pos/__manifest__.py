@@ -5,7 +5,8 @@
     'summary': """
         * Showing WB Button and WB Button2 POS
         * Pos Edit button in model post config "Visible Backspace Button"
-        * Visible (x) Numpad POS
+        * Invisible (x) Numpad POS
+        * Create Pop Up Odoo POS
 """,
 
     'description': """
