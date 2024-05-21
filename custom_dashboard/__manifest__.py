@@ -10,17 +10,11 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "Fiko Aditama",
     'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
+    'category': 'Apps',
     'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','web','sale', 'board'],
 
     # always loaded
     'data': [
@@ -28,8 +22,18 @@
         'views/sales_dashboard.xml',
         'views/templates.xml',
     ],
-    # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            "custom_dashboard/static/src/components/sales_dashboard.js",
+            'custom_dashboard/static/src/components/sales_dashboard.xml',
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
+        ],
+    },
+    'installable': True,
+    'auto_install': False,
+    'application': True,
 }

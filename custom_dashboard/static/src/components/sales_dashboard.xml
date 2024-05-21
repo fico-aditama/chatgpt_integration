@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="custom_dashboard.SalesDashboard" owl="1">
+        <h1>Custom Sales Dashboard</h1>
+        <!-- <div class="vh-100 overflow-auto bg-muted">
+            <div class="row m-3">
+                <div class="col-md-6">
+                    <h3>Sales This Month</h3>
+                    <t t-if="salesData.length > 0">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Order Name</th>
+                                    <th>Total Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="salesData" t-as="order">
+                                    <tr>
+                                        <td><t t-esc="order.name" /></td>
+                                        <td><t t-esc="$format.monetary(order.amount_total)" /></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-else="salesData.length === 0">
+                        <p>No sales orders found for this month.</p>
+                    </t>
+                </div>
+                </div>
+        </div> -->
+    </t>
+</templates>
