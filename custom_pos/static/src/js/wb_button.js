@@ -65,11 +65,16 @@ odoo.define('custom_po.WBSampleButton', function(require){
             // console.log(selectedOption);
         
             // Show a close POS info popup
-            const info = await this.env.pos.getClosePosInfo();
-            this.showPopup("ClosePosPopup", {
-                info: info,
-                keepBehind: true
-            });
+            // const info = await this.env.pos.getClosePosInfo();
+            // this.showPopup("ClosePosPopup", {
+            //     info: info,
+            //     keepBehind: true
+            // });
+
+            this.showPopup("ErrorPopup", {
+                title: this.env._t("Error Message"),
+                body: this.env._t("The Simple Error Message Screen"),
+            })
         }
     }
 

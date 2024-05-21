@@ -14,7 +14,7 @@
     """,
     'author': "Fiko Aditama",
     'website': "https://www.yourcompany.com",
-    'category': 'Apps',
+    'category': 'Point of Sale',
     'version': '0.1',
     'depends': ['base','point_of_sale'],
     'data': [
@@ -26,6 +26,8 @@
         'demo/demo.xml',
     ],
     'installable': True,
+    'auto_install': False,
+    'application': True,
     'assets' : {
         'point_of_sale.assets':[
             "custom_pos/static/src/js/wb_button.js",
