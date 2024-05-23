@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+<!-- Background Removal Request Form View -->
+<record id="view_background_removal_request_form" model="ir.ui.view">
+  <field name="name">document.studio.template.form</field>
+  <field name="model">document.studio.template</field>
+  <field name="arch" type="xml">
+    <form string="Background Removal Request">
+      <header>
+        <button name="action_process_image" string="Process Image" type="object" class="oe_highlight"/>
+      </header>
+      <group>
+        <group name="left_group_pane" string="Before">
+          <field name="name" />
+        </group>
+        <group name="right_group_pane" string="After">
+          <field name="processed_image" />
+        </group>
+      </group>
+      <footer>
+      </footer>
+    </form>
+  </field>
+</record>
+<record id="view_background_removal_request_kanban" model="ir.ui.view">
+  <field name="name">document.studio.template.kanban</field>
+  <field name="model">document.studio.template</field>
+  <field name="arch" type="xml">
+    <kanban>
+      <templates>
+        <t t-name="kanban-box">
+          <div class="oe_kanban_global_click">
+            <div class="oe_kanban_image">
+              <field name="name"/>
+              <img t-if="record.processed_image" t-att-src="kanban_image('document.studio.template', 'processed_image', record.processed_image)" t-att-title="record.name" width="128" height="128"/>
+            </div>
+            <div class="oe_kanban_details">
+              <div class="oe_kanban_record_title">
+                <field name="name"/>
+              </div>
+              <div>
+                <button name="action_process_image" string="Process Image" type="object" class="oe_highlight"/>
+              </div>
+            </div>
+          </div>
+        </t>
+      </templates>
+    </kanban>
+  </field>
+</record>
+
+        <!-- Action -->
+        <act_window id="action_document_background_removal"
+                    name="Background Removal"
+                    res_model="document.studio.template"
+                    view_mode="kanban,tree,form"
+        />
+        <!-- Menu Item -->
+        <menuitem id="menu_document_studio"
+                  name="Document Studio"
+                  sequence="10"
+        />
+        <menuitem id="menu_document_background_removal"
+                  name="Image"
+                  action="action_document_background_removal"
+                  parent="menu_document_studio"
+        />
+        <menuitem id="menu_document_pdf_studio"
+                  name="PDF"
+                  action="action_document_background_removal"
+                  parent="menu_document_studio"
+        />
+        <menuitem id="menu_document_text_studio"
+                  name="Text"
+                  action="action_document_background_removal"
+                  parent="menu_document_studio"
+        />
+  </data>
+
+</odoo>
