@@ -14,7 +14,7 @@
     'website': "https://www.yourcompany.com",
     'category': 'Apps',
     'version': '0.1',
-    'depends': ['base','web','sale', 'board'],
+    'depends': ['base','web','sale', 'board','spreadsheet_dashboard_sale',],
 
     # always loaded
     'data': [
@@ -27,12 +27,13 @@
     ],
     'assets': {
         'web.assets_backend': [
-            "custom_dashboard/static/src/components/sales_dashboard.js",
-            'custom_dashboard/static/src/components/sales_dashboard.xml',
+            'custom_dashboard/static/src/**/**/*.js',
+            'custom_dashboard/static/src/**/**/*.xml',
             'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js',
             'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css',
         ],
     },
+    'auto_install': ['spreadsheet_dashboard_sale'],
     'installable': True,
     'auto_install': False,
     'application': True,

@@ -1,46 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="custom_dashboard.SalesDashboard" owl="1">
-        <h1>Custom Sales Dashboard</h1>
-        <div class="vh-100 overflow-auto bg-muted">
-            <div class="row m-3">
-                <div class="col-md-6">
-                    <h3>Sales This Month</h3>
-                    <div class="flex space-x-4 mb-4">
-                        <div>
-                            <label for="start-date" class="block text-sm font-medium text-gray-700">Start Date</label>
-                            <input type="date" id="start-date" name="start-date" class="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <div class="vh-100 overflow-auto bg-muted p-3">
+            <div class="row">
+                <!-- Monthly Sales Section -->
+                <div class="col-12 mb-3">
+                    <div class="shadow-sm border p-4 bg-white">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h1 class="text-primary fw-bold">Monthly Sales</h1>
+                            <div>
+                                <select name="" id="" class="form-select">
+                                    <option value="0">Select Period</option>
+                                    <option value="7">Last 7 Days</option>
+                                    <option value="30">Last 30 Days</option>
+                                    <option value="90">Last 90 Days</option>
+                                    <option value="365">Last 365 Days</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label for="end-date" class="block text-sm font-medium text-gray-700">End Date</label>
-                            <input type="date" id="end-date" name="end-date" class="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        </div>
-                        <button id="filter-button" class="mt-6 px-4 py-2 bg-blue-500 text-white rounded">Filter</button>
                     </div>
+                </div>
 
-                    <t t-if="salesData.length > 0">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Order Name</th>
-                                    <th>Total Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <t t-foreach="salesData" t-as="order" t-key="order.id">
-                                    <tr>
-                                        <td><t t-esc="order.name" /></td>
-                                        <td><t t-esc="$format.monetary(order.amount_total)" /></td>
-                                    </tr>
-                                </t>
-                            </tbody>
-                        </table>
-                    </t>
-                    <t t-else="salesData.length === 0">
-                        <p>No sales orders found for this month.</p>
-                    </t>
+
+                <!-- KPICards Row -->
+                <div class="col-12 mb-3">
+                    <div class="row">
+                        <div class="col-3">
+                            <KpiCard name="'Quotations'" value="'30.5K'" percentage="10"/>
+                        </div>
+                        <div class="col-3">
+                            <KpiCard name="'Orders'" value="'20.5K'" percentage="20"/>
+                        </div>
+                        <div class="col-3">
+                            <KpiCard name="'Revenues'" value="'10.4K'" percentage="-4"/>
+                        </div>
+                        <div class="col-3">
+                            <KpiCard name="'Average Order'" value="'15.2K'" percentage="40"/>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Top Products and Top Sales People Section -->
+                <div class="col-lg-6 mb-3">
+                    <div class="shadow-sm border p-4 bg-white">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h1 class="text-primary fw-bold">Top Products</h1>
+                            <div class="px-3 py-1 bg-primary cursor-pointer">
+                                <span class="fa fa-arrow-right text-white"/>
+                            </div>
+                        </div>
+                        <canvas t-ref="chart-top-products"/>
+                    </div>
                 </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="shadow-sm border p-4 bg-white">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h1 class="text-primary fw-bold">Top Sales People</h1>
+                            <div class="px-3 py-1 bg-primary cursor-pointer">
+                                <span class="fa fa-arrow-right text-white"/>
+                            </div>
+                        </div>
+                        <canvas t-ref="chart-top-sales"/>
+                    </div>
+                </div>
+
+
+                <!-- Additional Charts Section -->
+                <div class="col-12 mb-3">
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 1</h1>
+                                <canvas t-ref="chart-1"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 2</h1>
+                                <canvas t-ref="chart-2"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 3</h1>
+                                <canvas t-ref="chart-3"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 4</h1>
+                                <canvas t-ref="chart-4"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 5</h1>
+                                <canvas t-ref="chart-5"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 6</h1>
+                                <canvas t-ref="chart-6"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 7</h1>
+                                <canvas t-ref="chart-7"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <div class="shadow-sm border p-4 bg-white">
+                                <h1 class="text-primary fw-bold">Chart 8</h1>
+                                <canvas t-ref="chart-8"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </t>
 </templates>
