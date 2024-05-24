@@ -23,7 +23,9 @@ export class SalesDashboard extends Component {
 
         onWillStart(async ()=>{
             'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js'
-        }) onMounted(()=>{
+        })
+
+        onMounted(()=>{
             const data = [
                 { year: 2010, count: 10 },
                 { year: 2011, count: 20 },
